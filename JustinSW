@@ -1,0 +1,143 @@
+Here’s how you can solve the tasks step by step using NumPy:
+
+---
+
+### **1. Define two custom numpy arrays, A and B, and stack them vertically and horizontally.**
+
+```python
+import numpy as np
+
+# Define two custom numpy arrays
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+
+# Stack vertically
+vertical_stack = np.vstack((A, B))
+
+# Stack horizontally
+horizontal_stack = np.hstack((A, B))
+
+print("Vertical Stack:\n", vertical_stack)
+print("Horizontal Stack:\n", horizontal_stack)
+```
+
+---
+
+### **2. Find common elements between A and B.**
+
+```python
+# Find common elements
+common_elements = np.intersect1d(A, B)
+
+print("Common Elements:", common_elements)
+```
+
+---
+
+### **3. Extract all numbers from A that are within a specific range (e.g., between 5 and 10).**
+
+```python
+# Define the range
+lower_bound = 5
+upper_bound = 10
+
+# Extract numbers within the range
+numbers_in_range = A[(A >= lower_bound) & (A <= upper_bound)]
+
+print("Numbers in range [5, 10]:", numbers_in_range)
+```
+
+---
+
+### **4. Filter rows of `iris_2d` where petal length (3rd column) > 1.5 and sepal length (1st column) < 5.0.**
+
+```python
+# Assuming iris_2d is already loaded using np.genfromtxt
+# Example: iris_2d = np.genfromtxt(url, delimiter=',', dtype='float', usecols=[0,1,2,3])
+
+# Apply the filter
+filtered_rows = iris_2d[(iris_2d[:, 2] > 1.5) & (iris_2d[:, 0] < 5.0)]
+
+print("Filtered Rows:\n", filtered_rows)
+```
+
+---
+
+**Explanation of the Code**
+
+1. **Vertical and Horizontal Stacking**:
+   - `np.vstack` stacks arrays vertically (row-wise).
+   - `np.hstack` stacks arrays horizontally (column-wise).
+
+2. **Finding Common Elements**:
+   - `np.intersect1d` finds the intersection of two arrays, i.e., common elements.
+
+3. **Extracting Numbers in a Range**:
+   - Boolean masks are used to filter elements within a specific range.
+
+4. **Filtering Rows in `iris_2d`**:
+   - Logical conditions are applied to filter rows based on specific column values.
+
+
+Here’s how you can accomplish the tasks using the Pandas library in Python:
+
+---
+
+### **1. Filter 'Manufacturer', 'Model', and 'Type' for every 20th row starting from the 1st (row 0).**
+
+```python
+import pandas as pd
+
+# Load the dataset
+df = pd.read_csv('https://raw.githubusercontent.com/selva86/datasets/master/Cars93_miss.csv')
+
+# Filter every 20th row starting from the 1st (row 0)
+filtered_df = df[['Manufacturer', 'Model', 'Type']].iloc[::20]
+
+print(filtered_df)
+```
+
+---
+
+### **2. Replace missing values in 'Min.Price' and 'Max.Price' columns with their respective mean.**
+
+```python
+# Load the dataset again if needed
+df = pd.read_csv('https://raw.githubusercontent.com/selva86/datasets/master/Cars93_miss.csv')
+
+# Replace missing values with the mean
+df['Min.Price'].fillna(df['Min.Price'].mean(), inplace=True)
+df['Max.Price'].fillna(df['Max.Price'].mean(), inplace=True)
+
+print(df[['Min.Price', 'Max.Price']].head())
+```
+
+---
+
+### **3. Get the rows of a DataFrame with row sum > 100.**
+
+```python
+import numpy as np
+
+# Create a DataFrame with random integers
+df = pd.DataFrame(np.random.randint(10, 40, 60).reshape(-1, 4))
+
+# Get rows where the sum of the row is greater than 100
+rows_with_sum_gt_100 = df[df.sum(axis=1) > 100]
+
+print(rows_with_sum_gt_100)
+```
+
+---
+
+### **Explanation of the Code**
+
+1. **Filtering Rows**:
+   - The `iloc[::20]` method is used to select every 20th row starting from the first row (index 0).
+
+2. **Replacing Missing Values**:
+   - The `fillna()` method replaces missing values in the specified columns with their mean, calculated using `mean()`.
+
+3. **Row Sum Filtering**:
+   - The `sum(axis=1)` computes the sum of each row, and the DataFrame is filtered to include only those rows where the sum exceeds 100.
+
