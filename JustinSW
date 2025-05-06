@@ -1,6 +1,3 @@
-Here’s how you can solve the tasks step by step using NumPy:
-
----
 
 ### **1. Define two custom numpy arrays, A and B, and stack them vertically and horizontally.**
 
@@ -102,7 +99,6 @@ print(filtered_df)
 ### **2. Replace missing values in 'Min.Price' and 'Max.Price' columns with their respective mean.**
 
 ```python
-# Load the dataset again if needed
 df = pd.read_csv('https://raw.githubusercontent.com/selva86/datasets/master/Cars93_miss.csv')
 
 # Replace missing values with the mean
@@ -119,7 +115,6 @@ print(df[['Min.Price', 'Max.Price']].head())
 ```python
 import numpy as np
 
-# Create a DataFrame with random integers
 df = pd.DataFrame(np.random.randint(10, 40, 60).reshape(-1, 4))
 
 # Get rows where the sum of the row is greater than 100
@@ -129,15 +124,4 @@ print(rows_with_sum_gt_100)
 ```
 
 ---
-
-### **Explanation of the Code**
-
-1. **Filtering Rows**:
-   - The `iloc[::20]` method is used to select every 20th row starting from the first row (index 0).
-
-2. **Replacing Missing Values**:
-   - The `fillna()` method replaces missing values in the specified columns with their mean, calculated using `mean()`.
-
-3. **Row Sum Filtering**:
-   - The `sum(axis=1)` computes the sum of each row, and the DataFrame is filtered to include only those rows where the sum exceeds 100.
 
